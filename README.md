@@ -1,79 +1,30 @@
 # Basic-Calculator
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <ctype.h>
+# C Projects for Beginners
 
-#define MAX 100
+This repository contains two simple C language projects built as part of early programming practice. These projects demonstrate basic understanding of data structures, control flow, and user input/output handling.
 
-// Stack structure
-struct Stack {
-    int top;
-    float items[MAX];
-};
+---
 
-// Stack functions
-void initStack(struct Stack* stack) {
-    stack->top = -1;
-}
+##Projects Included
 
-int isEmpty(struct Stack* stack) {
-    return stack->top == -1;
-}
+### 1.Basic Calculator using C and Stack (DSA)
+A command-line calculator that performs arithmetic operations (addition, subtraction, multiplication, division) using the stack data structure for postfix expression evaluation.
 
-void push(struct Stack* stack, float value) {
-    if (stack->top == MAX - 1) {
-        printf("Stack overflow\n");
-        return;
-    }
-    stack->items[++(stack->top)] = value;
-}
+####Features:
+- Evaluates expressions in postfix (Reverse Polish Notation) format.
+- Uses stack for operand management.
+- Basic implementation of expression parsing.
+  
+####Example:
+Input: `23+`  
+Output: `2.00 + 3.00 = 5.00`
 
-float pop(struct Stack* stack) {
-    if (isEmpty(stack)) {
-        printf("Stack underflow\n");
-        return -1;
-    }
-    return stack->items[(stack->top)--];
-}
+---
 
-// Function to perform operations
-float performOperation(float a, float b, char operator) {
-    switch (operator) {
-        case '+': return a + b;
-        case '-': return a - b;
-        case '*': return a * b;
-        case '/': return a / b;
-        default: return 0;
-    }
-}
+### 2.Currency Converter using C
+A simple currency converter that uses control flow statements (if-else and switch-case) to convert between different currencies using hardcoded exchange rates.
 
-// Function to evaluate the expression
-float evaluate(char* expression) {
-    struct Stack stack;
-    initStack(&stack);
-    
-    for (int i = 0; i < strlen(expression); i++) {
-        char ch = expression[i];
-        
-        if (isdigit(ch)) {
-            push(&stack, ch - '0'); // Push digits to stack
-        } else if (ch == '+' || ch == '-' || ch == '*' || ch == '/') {
-            float b = pop(&stack);
-            float a = pop(&stack);
-            push(&stack, performOperation(a, b, ch));
-        }
-    }
-    return pop(&stack);  // Final result
-}
-
-int main() {
-    char expression[MAX];
-    printf("Enter the expression: ");
-    scanf("%s", expression);
-
-    float result = evaluate(expression);
-    printf("Result: %.2f\n", result);
-
-    return 0;
-}
+####Features:
+- Converts between INR, USD, and EUR.
+- Uses `switch-case` for user selection and conversion logic.
+- Beginner-friendly example of conditionals and user input handling.
